@@ -6,6 +6,7 @@ app = FastAPI(title="Microservicio Demo")
 
 @app.get("/live")
 def liveness():
+    print("hi nes")
     return {"status": "alive", "timestamp": datetime.utcnow().isoformat()}
 
 
