@@ -23,7 +23,6 @@ def liveness():
 
 @app.get("/ready")
 def readiness():
-    print("hi nes")
     return {
         "status": "ready",
         "env": APP_ENV,
