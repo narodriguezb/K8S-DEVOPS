@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: api-microservice
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 3000
