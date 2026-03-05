@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: api-microservice
-  template: #va lo que le vamos a poner a cada pod
+  template:
     metadata:
       labels:
         app: api-microservice
@@ -19,3 +19,10 @@ spec:
           image: nestorx211/k8s-microservice-python:1.0.0
           ports:
             - containerPort: 8000
+          resources:
+            requests:
+              cpu: 200m
+              memory: 500Mi
+            limits:
+              cpu: 6000m
+              memory: 1Gi
