@@ -16,13 +16,20 @@ spec:
     spec:
       containers:
         - name: api-microservice
-          image: nestorx211/k8s-microservice-python:1.0.0
+          image: nestorx211/k8s-microservice-python:1.0.1
           ports:
             - containerPort: 8000
+          startupProbe:
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            periodSeconds: 15
+            httpGet:
+              path: /live
+              port: 8000
           resources:
             requests:
               cpu: 200m
               memory: 500Mi
             limits:
-              cpu: 6000m
+              cpu: 600m
               memory: 1Gi
