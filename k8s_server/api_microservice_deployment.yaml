@@ -27,6 +27,20 @@ spec:
             httpGet:
               path: /live
               port: 8000
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+            httpGet:
+              path: /live
+              port: 8000
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 3
+            httpGet:
+              path: /live
+              port: 8000
           resources:
             requests:
               cpu: 200m
