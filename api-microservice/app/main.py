@@ -1,5 +1,10 @@
+import time
 from fastapi import FastAPI
 from datetime import datetime
+
+print("Inicializando app...", flush=True)
+time.sleep(15)
+print("App lista.", flush=True)
 
 app = FastAPI(title="Microservicio Demo")
 
