@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-microservice
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: api-microservice
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: api-microservice
+  template:
+    metadata:
+      labels:
+        app: api-microservice
+    spec:
+      containers:
+        - name: api-microservice
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: APP_ENV
+              value: {{ .Values.env | quote }}
+          startupProbe:
+            initialDelaySeconds: 15
+            failureThreshold: 3
+            periodSeconds: 15
+            httpGet:
+              path: /live
+              port: 8000
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+            httpGet:
+              path: /live
+              port: 8000
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            failureThreshold: 3
+            httpGet:
+              path: /live
+              port: 8000
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}

@@ -1,0 +1,24 @@
+image:
+  repository: nestorx211/api-microservice
+  tag: dev
+  pullPolicy: Always
+
+env: dev
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 300m
+    memory: 512Mi
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 2
+  cpuUtilization: 70
+
+ingress:
+  path: /users(/|$)(.*)
