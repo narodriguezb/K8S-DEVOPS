@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-microservice
+  namespace: api
   labels:
     app: api-microservice
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: api-microservice
