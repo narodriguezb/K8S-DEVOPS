@@ -16,4 +16,4 @@ hpa:
   maxReplicas: 2
   cpuUtilization: 70
 ingress:
-  path: /users(/|$)(.*)
+  path: /dev/users(/|$)(.*)
