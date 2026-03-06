@@ -2,11 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-microservice
-  namespace: {{ .Release.Namespace }}
+  namespace: { { .Release.Namespace } }
   labels:
     app: api-microservice
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: { { .Values.replicaCount } }
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: api-microservice
@@ -18,12 +19,12 @@ spec:
       containers:
         - name: api-microservice
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: { { .Values.image.pullPolicy } }
           ports:
             - containerPort: 8000
           env:
             - name: APP_ENV
-              value: {{ .Values.env | quote }}
+              value: { { .Values.env | quote } }
           startupProbe:
             initialDelaySeconds: 15
             failureThreshold: 3
@@ -47,8 +48,8 @@ spec:
               port: 8000
           resources:
             requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+              cpu: { { .Values.resources.requests.cpu } }
+              memory: { { .Values.resources.requests.memory } }
             limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
+              cpu: { { .Values.resources.limits.cpu } }
+              memory: { { .Values.resources.limits.memory } }
