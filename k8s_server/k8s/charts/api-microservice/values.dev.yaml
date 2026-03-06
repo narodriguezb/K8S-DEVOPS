@@ -13,7 +13,7 @@ resources:
     memory: 512Mi
 hpa:
   minReplicas: 1
-  maxReplicas: 2
+  maxReplicas: 3
   cpuUtilization: 70
 ingress:
   path: /dev/users(/|$)(.*)
