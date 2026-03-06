@@ -1,6 +1,6 @@
 image:
   repository: nestorx211/api-microservice
-  tag: dev-9820839e270759bb56509bc4c1906ea603e4793f
+  tag: dev-54643327ff8368a496f4854459dc8af18cd4009d
   pullPolicy: Always
 env: dev
 replicaCount: 1
