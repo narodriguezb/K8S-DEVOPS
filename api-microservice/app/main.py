@@ -26,7 +26,7 @@ def readiness():
     return {
         "status": "ready",
         "env": APP_ENV,
-        "change": "probando cambios para ver todo el flujo v4",
+        "change": "probando cambios para ver todo el flujo v5",
         "timestamp": datetime.utcnow().isoformat(),
     }
 
