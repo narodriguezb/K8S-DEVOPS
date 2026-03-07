@@ -14,10 +14,10 @@ Daniel Orlando Saavedra Fonnegra
 
 ## Componentes implementados
 
-| Módulo | Descripción | Tipo |
-|---|---|---|
-| `api-microservice` | Microservicio REST multi-ambiente con health probes, Dockerfile y pipeline CI/CD | Aplicación |
-| `k8s_server` | Infraestructura declarativa: manifests base + Helm chart con valores por ambiente | Infraestructura |
+| Módulo             | Descripción                                                                       | Tipo            |
+| ------------------ | --------------------------------------------------------------------------------- | --------------- |
+| `api-microservice` | Microservicio REST multi-ambiente con health probes, Dockerfile y pipeline CI/CD  | Aplicación      |
+| `k8s_server`       | Infraestructura declarativa: manifests base + Helm chart con valores por ambiente | Infraestructura |
 
 ## Cómo ejecutar
 
@@ -65,6 +65,12 @@ helm install api-prod ./k8s_server/k8s/charts/api-microservice \
 > Ver documentación completa en [`k8s_server/README.md`](./k8s_server/README.md)
 
 ---
+
+Flujo CI/CD con GitActions y Argo CD
+Desarrollo: al realizar un commit en la rama principal (main), GitActions se activa.
+Construcción: GitActions construye la imagen Docker y la publica en el registro.
+Actualización: GitActions actualiza la versión de la imagen en el chart de Helm.
+Sincronización: Argo CD detecta el cambio en Git y despliega la nueva versión automáticamente.
 
 ## Flujo GitOps
 
